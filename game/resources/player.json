@@ -13,6 +13,11 @@
         "frameRate": 4,
         "loop": true
       },{
+        "name": "reins",
+        "frames": [38, 39, 38, 40],
+        "frameRate": 4,
+        "loop": true
+      },{
         "name": "wave",
         "frames": [],
         "frameRate": 4,
