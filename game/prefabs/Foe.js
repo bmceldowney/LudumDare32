@@ -1,7 +1,7 @@
 'use strict';
 
 var Foe = function(game, config) {
-  Phaser.Sprite.call(this, game, game.width, config.y, config.sprite.key, 0);
+  Phaser.Sprite.call(this, game, game.width, config.sprite.y, config.sprite.key, 0);
 
   config.sprite.animations.forEach(function (anim) {
 		this.animations.add(anim.name, anim.frames, anim.frameRate, anim.loop);

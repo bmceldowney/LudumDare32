@@ -21,7 +21,7 @@ EncounterManager.prototype.start = function() {
 EncounterManager.prototype.executeCommand = function (commandName) {
 	// we need an encounter to act
 	if (this.encounter && this.canAct) {
-		this.canAct = false;
+		// this.canAct = false;
 		this.encounter.resolveCommand(commandName);
 	};
 }

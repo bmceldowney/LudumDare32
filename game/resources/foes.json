@@ -4,7 +4,7 @@
 		"sprite": {
 			"key": "golem",
 			"x": 460,
-			"y": 150,
+			"y": 210,
       "scaleX": 4,
       "scaleY": 4,
 			"animations": [{
@@ -40,7 +40,7 @@
 		"sprite": {
 			"key": "jug",
 			"x": 460,
-			"y": 350,
+			"y": 250,
       "scaleX": 4,
       "scaleY": 4,
 			"animations": [{
