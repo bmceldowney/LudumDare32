@@ -43,7 +43,7 @@ function checkForSwap(sprite, altSprite) {
 
 		this.stagedSprite = this.currentSprite;
 		this.currentSprite = stagedSprite;
-	};  	  
+	};
 }
 
 module.exports = InfiniteScroller;

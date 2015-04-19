@@ -24,8 +24,9 @@ Play.prototype = {
 
     this.player = new Player(this.game, {
       x: 460,
-      y: 260,
+      y: 220,
     });
+    this.player.run();
 
     this.menu = new Menu(this.game, 0, this.game.height - 200, this.game.width, 200);
     this.game.add.existing(this.menu);
@@ -79,6 +80,7 @@ Play.prototype = {
 
   update: function() {
     this.parallaxStage.update();
+    this.player.update();
   },
 
   render: function() {
