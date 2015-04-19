@@ -94,17 +94,25 @@ Player.prototype.run = function () {
   this.blockman.x += 18;
 }
 
-Player.prototype.claws = function () {
-  this.tuna.animations.play('claws');
+Player.prototype.teeth = function () {
+  var anim = this.tuna.animations.play('teeth');
   this.blockman.animations.play('wave');
+
+  anim.onComplete.add(this.stop, this);
+
+}
+
+Player.prototype.claws = function () {
+  var anim = this.tuna.animations.play('claws');
+  this.blockman.animations.play('wave');
+
+  anim.onComplete.add(this.stop, this);
 }
 
 Player.prototype.update = function() {
   var currentAnim = this.tuna.animations.currentAnim;
   var currentFrame = this.tuna.animations.currentFrame;
-  if (!currentAnim.paused &&
-    _.has(tunaConfig, currentAnim.name)
-  ) {
+  if (!currentAnim.paused && _.has(tunaConfig, currentAnim.name) ) {
     if (this.lastFrame === null) {
       this.lastFrame = currentFrame.index;
     } else if (this.lastFrame !== currentFrame.index) {
@@ -124,9 +132,7 @@ Player.prototype.update = function() {
           this.tuna.y = this.config.tuna.y + (tunaOffset[1] * tunaConfig.sprite.scaleY);
         }
       }
-
     }
-
   }
 };
 
