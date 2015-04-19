@@ -48,6 +48,7 @@ function stopWalking () {
 	});
 	// this.player.trot();
 	this.player.stop();
+	this.player.claws();
 
 	startCombat.call(this);
 }

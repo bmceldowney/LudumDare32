@@ -7,12 +7,17 @@ var tunaConfig = playerConfig[1];
 var Player = function(game, config) {
 
   this.game = game;
-  this.config = config;
-  this.config.blockman = {
-    x: config.x - 264,
-    y: config.y - 59
-  };
-  // this.tuna = this.game.add.sprite(game.width, 0, 'tuna');
+  this.config = _.extend(config, {
+    tuna: {
+      x: config.x,
+      y: config.y,
+    },
+    blockman: {
+      x: config.x - 264,
+      y: config.y - 59
+    }
+  });
+
   this.tuna = this.game.add.sprite(config.x, config.y, 'tuna', tunaConfig.sprite.defaultFrame);
   this.tuna.smoothed = false;
   this.tuna.scale.setTo(tunaConfig.sprite.scaleX, tunaConfig.sprite.scaleY);
@@ -23,19 +28,25 @@ var Player = function(game, config) {
 
   tunaConfig.sprite.animations.forEach(function (anim) {
     this.tuna.animations.add(anim.name, anim.frames, anim.frameRate, anim.loop);
+    tunaConfig[anim.name] = {};
     if (anim.bm_pos) {
       // if we have a blockman delta with the animation, add it!
-      tunaConfig.blockmanRunPos = {};
+      tunaConfig[anim.name].blockmanPosLookup = {};
       _.each(anim.frames, function(k,i){
-        tunaConfig.blockmanRunPos[k] = anim.bm_pos[i];
+        tunaConfig[anim.name].blockmanPosLookup[k] = anim.bm_pos[i];
       });
-      console.log("blockmandelta");
-      console.log(tunaConfig.blockmanRunPos);
+    }
+    if (anim.tuna_pos) {
+      // if we have a tuna delta with the animation, add it!
+      tunaConfig[anim.name].tunaPosLookup = {};
+      _.each(anim.frames, function(k,i){
+        tunaConfig[anim.name].tunaPosLookup[k] = anim.tuna_pos[i];
+      });
     }
   }.bind(this));
 
   blockmanConfig.sprite.animations.forEach(function (anim) {
-        this.blockman.animations.add(anim.name, anim.frames, anim.frameRate, anim.loop);
+    this.blockman.animations.add(anim.name, anim.frames, anim.frameRate, anim.loop);
   }.bind(this));
 
   this.tuna.animations.play('walk');
@@ -55,12 +66,16 @@ Player.prototype = Object.create(Object);
 Player.prototype.constructor = Player;
 
 Player.prototype.stop = function() {
-  this.tuna.animations.stop();
   this.blockman.animations.stop();
-  this.tuna.frame = tunaConfig.sprite.defaultFrame;
+  this.tuna.animations.stop();
+
   this.blockman.frame = blockmanConfig.sprite.defaultFrame;
+  this.tuna.frame = tunaConfig.sprite.defaultFrame;
+
   this.blockman.x = this.config.blockman.x;
   this.blockman.y = this.config.blockman.y;
+  this.tuna.x = this.config.tuna.x;
+  this.tuna.y = this.config.tuna.y;
   this.lastFrame = null;
 }
 
@@ -80,26 +95,37 @@ Player.prototype.run = function () {
   this.blockman.x += 18;
 }
 
-Player.prototype.swipe = function () {
-    this.animations.play('attack');
-};
+Player.prototype.claws = function () {
+  this.tuna.animations.play('claws');
+  this.blockman.animations.play('wave');
+}
 
 Player.prototype.update = function() {
-  if (this.tuna.animations.currentAnim.name === 'run'
-    && !this.tuna.animations.currentAnim.paused
-    ) {
+  var currentAnim = this.tuna.animations.currentAnim;
+  var currentFrame = this.tuna.animations.currentFrame;
+  if (!currentAnim.paused &&
+    _.has(tunaConfig, currentAnim.name)
+  ) {
     if (this.lastFrame === null) {
-      this.lastFrame = this.tuna.animations.currentFrame.index;
+      this.lastFrame = currentFrame.index;
+    } else if (this.lastFrame !== currentFrame.index) {
+      this.lastFrame = currentFrame.index;
 
-    } else if (this.lastFrame !== this.tuna.animations.currentFrame.index) {
-      this.lastFrame = this.tuna.animations.currentFrame.index;
-
-      var blockmanOffset = tunaConfig.blockmanRunPos[this.tuna.animations.currentFrame.index];
-      blockmanOffset = blockmanOffset* tunaConfig.sprite.scaleY;
-
-      if (blockmanOffset) {
-        this.blockman.y = this.config.blockman.y + blockmanOffset;
+      if(_.has(tunaConfig[currentAnim.name], 'blockmanPosLookup')) {
+        var bmOffset = tunaConfig[currentAnim.name].blockmanPosLookup[currentFrame.index];
+        if (bmOffset) {
+          this.blockman.x = this.config.blockman.x + (bmOffset[0] * tunaConfig.sprite.scaleY)
+          this.blockman.y = this.config.blockman.y + (bmOffset[1] * tunaConfig.sprite.scaleY);
+        }
       }
+      if(_.has(tunaConfig[currentAnim.name], 'tunaPosLookup')) {
+        var tunaOffset = tunaConfig[currentAnim.name].tunaPosLookup[currentFrame.index];
+        if (tunaOffset) {
+          this.tuna.x = this.config.tuna.x + (tunaOffset[0] * tunaConfig.sprite.scaleY)
+          this.tuna.y = this.config.tuna.y + (tunaOffset[1] * tunaConfig.sprite.scaleY);
+        }
+      }
+
     }
 
   }
