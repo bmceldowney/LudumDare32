@@ -22,6 +22,7 @@ var Foe = function(game, config) {
   this.maxHealth = config.stats.health;
   this.health = this.maxHealth;
 
+  this.attack = config.attack;
   window.foe = this;
 };
 
