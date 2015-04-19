@@ -17,12 +17,9 @@ EncounterManager.prototype.start = function() {
 	startWalking.call(this);
 };
 
-EncounterManager.prototype.executeCommand = function (e) {
+EncounterManager.prototype.executeCommand = function (commandName) {
 	// delegate to something
-	switch (e) {
-		case 'claws':
-		break;
-	}
+	this.encounter.resolveCommand(commandName);
 }
 
 function startWalking () {
@@ -31,7 +28,7 @@ function startWalking () {
 }
 
 function introFoes () {
-	this.encounter = new Encounter(this.game);
+	this.encounter = new Encounter(this.game, 0, null, this.player);
 
 	this.game.time.events.add(5000, stopWalking, this);
 }

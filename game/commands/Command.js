@@ -13,7 +13,7 @@ Command.constructor = Command;
 
 Command.prototype.execute = function() {
   this.setGranularity('specific');
-	this.executing.dispatch(this);
+	this.executing.dispatch(this.model);
   console.log(this.key);
 };
 
@@ -37,4 +37,3 @@ Command.prototype.getModifier = function(type) {
 };
 
 module.exports = Command;
-

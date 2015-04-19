@@ -2,10 +2,12 @@
 var foes = require('../resources/foes');
 var Foe = require('./Foe');
 
-var Encounter = function(game, tier, modifiers) {
+var Encounter = function(game, tier, modifiers, player) {
 	this.game = game;
 	this.globalModifiers = modifiers
 
+	// for ludum dare 32 we will only have the one foe
+	// but laterit may be different
 	this.foes = getFoes(game);
 };
 
@@ -16,7 +18,13 @@ Encounter.prototype.start = function() {
 };
 
 Encounter.prototype.resolveCommand = function(command) {
-	// body...
+  console.log(this.text);
+
+	switch (command.name.specific) {
+		case 'Claws':
+
+		break;
+	}
 }
 
 function getFoes(game) {
