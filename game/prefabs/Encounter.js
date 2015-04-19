@@ -46,6 +46,7 @@ function attack (attacker, defender, command, context) {
 		var anim = defender.animations.play('hit');
 		this.damageText.setText('yowch');//command.modifiers.power
 		defender.addChild(this.damageText);
+    defender.damage(20);
 
 		if (anim) {
 			anim.onComplete.add(hitComplete, this);
