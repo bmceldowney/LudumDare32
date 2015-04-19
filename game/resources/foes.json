@@ -37,8 +37,7 @@
 		},
 		"attack": {
 	    "name": {
-	      "general": "CLAWS?",
-	      "specific": "CLAWS"
+	      "specific": "attack"
 	    },
 	    "description": {
 	      "general": "My claws must be good for something...",
@@ -82,8 +81,7 @@
 		},
 		"attack": {
 	    "name": {
-	      "general": "CLAWS?",
-	      "specific": "CLAWS"
+	      "specific": "attack"
 	    },
 	    "description": {
 	      "general": "My claws must be good for something...",
