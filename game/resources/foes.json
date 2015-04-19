@@ -29,7 +29,7 @@
 				"loop": false
 			}]
 		},
-		stats: {
+		"stats": {
 			"power": 10,
 			"stamina": 15,
 			"health": 50,
