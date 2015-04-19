@@ -11,7 +11,7 @@ Command.constructor = Command;
 
 Command.prototype.execute = function() {
 	this.executing.dispatch(this);
-  console.log(key);
+  console.log(this.key);
 };
 
 module.exports = Command;
