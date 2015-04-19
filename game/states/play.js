@@ -49,26 +49,6 @@ Play.prototype = {
     this.menu.commands.add(new Command('teeth'));
     this.menu.commands.add(new Command('tuna'));
     this.menu.commands.add(new Command('bad_tuna'));
-    this.menu.commands.add(new Command('claws'));
-    this.menu.commands.add(new Command('teeth'));
-    this.menu.commands.add(new Command('tuna'));
-    this.menu.commands.add(new Command('bad_tuna'));
-    this.menu.commands.add(new Command('claws'));
-    this.menu.commands.add(new Command('teeth'));
-    this.menu.commands.add(new Command('tuna'));
-    this.menu.commands.add(new Command('bad_tuna'));
-    this.menu.commands.add(new Command('claws'));
-    this.menu.commands.add(new Command('teeth'));
-    this.menu.commands.add(new Command('tuna'));
-    this.menu.commands.add(new Command('bad_tuna'));
-    this.menu.commands.add(new Command('claws'));
-    this.menu.commands.add(new Command('teeth'));
-    this.menu.commands.add(new Command('tuna'));
-    this.menu.commands.add(new Command('bad_tuna'));
-    this.menu.commands.add(new Command('claws'));
-    this.menu.commands.add(new Command('teeth'));
-    this.menu.commands.add(new Command('tuna'));
-    this.menu.commands.add(new Command('bad_tuna'));
     this.menu.commands.commandExecuted.add(this.commandHandler, this);
     this.menu.disable();
 
