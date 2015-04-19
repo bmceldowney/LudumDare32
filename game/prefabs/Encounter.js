@@ -30,6 +30,8 @@ Encounter.prototype.resolveCommand = function(command) {
 	switch (command.name.specific) {
 		case 'CLAWS':
 			this.currentAction = new Attack(this.game, this.player, this.foes[0], command, this);
+		case 'TEETH':
+			this.currentAction = new Attack(this.game, this.player, this.foes[0], command, this);
 		break;
 	}
 
