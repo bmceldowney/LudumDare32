@@ -19,7 +19,7 @@ CommandList.prototype.add = function(command) {
     throw new Error('Can\'t add more commands to the list. Max length exceeded.');
   }
 
-  Phaser.Group.prototype.add.call(this, new CommandOption(this.game, 0, 0, command.model));
+  Phaser.Group.prototype.add.call(this, new CommandOption(this.game, 0, 0, command));
 
   if (this.length === 1) {
     this.setActive(this.getAt(0));
@@ -56,19 +56,57 @@ CommandList.prototype.remove = function(command) {
 };
 
 CommandList.prototype.setActive = function(command) {
-  this.cursor && this.cursor.active(false);
+  this.callAll('active', null, false);
   this.cursor = command;
   this.cursor.active(true);
 };
 
-CommandList.prototype.chooseNext = function() {
-  this.cursor && this.cursor.active(false);
-  this.next().active(true);
+CommandList.prototype.chooseUp = function() {
+  this.callAll('active', null, false);
+  if (this.cursor) {
+    this.cursorIndex = (this.cursorIndex + -1 >= 0) ? this.cursorIndex + -1 : this.length + this.cursorIndex + -1;
+    this.cursor = this.getAt(this.cursorIndex);
+  }
+  else {
+    this.cursor = this.getAt(0);
+  }
+  this.cursor.active(true);
 };
 
-CommandList.prototype.choosePrev = function() {
-  this.cursor && this.cursor.active(false);
-  this.previous().active(true);
+CommandList.prototype.chooseRight = function() {
+  this.callAll('active', null, false);
+  if (this.cursor) {
+    this.cursorIndex = (this.cursorIndex + 6 < this.length) ? this.cursorIndex + 6 : (this.cursorIndex + 6) - this.length;
+    this.cursor = this.getAt(this.cursorIndex);
+  }
+  else {
+    this.cursor = this.getAt(0);
+  }
+  this.cursor.active(true);
+};
+
+CommandList.prototype.chooseDown = function() {
+  this.callAll('active', null, false);
+  if (this.cursor) {
+    this.cursorIndex = (this.cursorIndex + 1 < this.length) ? this.cursorIndex + 1 : (this.cursorIndex + 1) - this.length;
+    this.cursor = this.getAt(this.cursorIndex);
+  }
+  else {
+    this.cursor = this.getAt(0);
+  }
+  this.cursor.active(true);
+};
+
+CommandList.prototype.chooseLeft = function() {
+  this.callAll('active', null, false);
+  if (this.cursor) {
+    this.cursorIndex = (this.cursorIndex + -6 >= 0) ? this.cursorIndex + -6 : this.length + this.cursorIndex + -6;
+    this.cursor = this.getAt(this.cursorIndex);
+  }
+  else {
+    this.cursor = this.getAt(0);
+  }
+  this.cursor.active(true);
 };
 
 CommandList.prototype.getActiveCommand = function() {

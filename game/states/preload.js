@@ -28,6 +28,7 @@ Preload.prototype = {
     this.load.bitmapFont('8bit-light', 'assets/fonts/8bit_wonder-light.png', 'assets/fonts/8bit_wonder-light.fnt');
     this.load.bitmapFont('yoster-white', 'assets/fonts/yoster-white.png', 'assets/fonts/yoster-white.fnt');
     this.load.bitmapFont('yoster-gray', 'assets/fonts/yoster-gray.png', 'assets/fonts/yoster-gray.fnt');
+    this.load.bitmapFont('yoster-blue', 'assets/fonts/yoster-blue.png', 'assets/fonts/yoster-blue.fnt');
 
     // Actors
     this.load.spritesheet('blockman', 'assets/placeholder/blockman_oneleg2.png', 25, 24);

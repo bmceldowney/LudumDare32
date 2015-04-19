@@ -30,13 +30,35 @@ Play.prototype = {
     this.menu = new Menu(this.game, 0, this.game.height - 200, this.game.width, 200);
     this.game.add.existing(this.menu);
 
-    this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN).onDown.add(this.menu.commands.chooseNext, this.menu.commands);
-    this.game.input.keyboard.addKey(Phaser.Keyboard.UP).onDown.add(this.menu.commands.choosePrev, this.menu.commands);
+    this.game.input.keyboard.addKey(Phaser.Keyboard.UP).onDown.add(this.menu.commands.chooseUp, this.menu.commands);
+    this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT).onDown.add(this.menu.commands.chooseRight, this.menu.commands);
+    this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN).onDown.add(this.menu.commands.chooseDown, this.menu.commands);
+    this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT).onDown.add(this.menu.commands.chooseLeft, this.menu.commands);
 
     this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(function() {
       this.menu.commands.getActiveCommand().execute();
     }, this);
 
+    this.menu.commands.add(new Command('claws'));
+    this.menu.commands.add(new Command('teeth'));
+    this.menu.commands.add(new Command('tuna'));
+    this.menu.commands.add(new Command('bad_tuna'));
+    this.menu.commands.add(new Command('claws'));
+    this.menu.commands.add(new Command('teeth'));
+    this.menu.commands.add(new Command('tuna'));
+    this.menu.commands.add(new Command('bad_tuna'));
+    this.menu.commands.add(new Command('claws'));
+    this.menu.commands.add(new Command('teeth'));
+    this.menu.commands.add(new Command('tuna'));
+    this.menu.commands.add(new Command('bad_tuna'));
+    this.menu.commands.add(new Command('claws'));
+    this.menu.commands.add(new Command('teeth'));
+    this.menu.commands.add(new Command('tuna'));
+    this.menu.commands.add(new Command('bad_tuna'));
+    this.menu.commands.add(new Command('claws'));
+    this.menu.commands.add(new Command('teeth'));
+    this.menu.commands.add(new Command('tuna'));
+    this.menu.commands.add(new Command('bad_tuna'));
     this.menu.commands.add(new Command('claws'));
     this.menu.commands.add(new Command('teeth'));
     this.menu.commands.add(new Command('tuna'));
