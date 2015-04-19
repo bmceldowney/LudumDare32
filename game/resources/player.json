@@ -13,20 +13,25 @@
         "frameRate": 4,
         "loop": true
       },{
-        "name": "fists",
-        "frames": [4,5,6,5],
-        "frameRate": 5,
+        "name": "wave",
+        "frames": [],
+        "frameRate": 4,
         "loop": false
       },{
-        "name": "block",
-        "frames": [8,9,10,9],
-        "frameRate": 5,
+        "name": "dumpwater",
+        "frames": [],
+        "frameRate": 4,
         "loop": false
       },{
-        "name": "attack",
-        "frames": [12,13,14,13],
-        "frameRate": 5,
+        "name": "throw",
+        "frames": [],
+        "frameRate": 4,
         "loop": false
+      },{
+        "name": "rockspin",
+        "frames": [],
+        "frameRate": 4,
+        "loop": true
       }]
     }
   },
