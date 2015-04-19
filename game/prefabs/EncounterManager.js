@@ -6,6 +6,7 @@ var EncounterManager = function(game, player, commands) {
 	this.currentTier = 0;
 	this.player = player;
 	this.commands = commands;
+	this.canAct = false;
 
 	this.traveling = new Phaser.Signal();
 	this.encountering = new Phaser.Signal();
@@ -18,8 +19,11 @@ EncounterManager.prototype.start = function() {
 };
 
 EncounterManager.prototype.executeCommand = function (commandName) {
-	// delegate to something
-	this.encounter.resolveCommand(commandName);
+	// we need an encounter to act
+	if (this.encounter && this.canAct) {
+		this.canAct = false;
+		this.encounter.resolveCommand(commandName);
+	};
 }
 
 function startWalking () {
@@ -44,6 +48,7 @@ function stopWalking () {
 
 function startCombat () {
 	// combat simulation!
+	this.canAct = true;
 
 	// this.game.time.events.add(5000, startWalking, this);
 	// startWalking.call(this);

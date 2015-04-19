@@ -14,7 +14,6 @@ Command.constructor = Command;
 Command.prototype.execute = function() {
   this.setGranularity('specific');
 	this.executing.dispatch(this.model);
-  console.log(this.key);
 };
 
 Command.prototype.setGranularity = function(level) {

@@ -45,8 +45,8 @@
       "scaleY": 4,
 			"animations": [{
 				"name": "idle",
-				"frames": [1,2,3,4],
-				"frameRate": 4,
+				"frames": [4,3,2,1],
+				"frameRate": 1,
 				"loop": true
 			},{
 				"name": "walk",

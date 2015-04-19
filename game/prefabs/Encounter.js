@@ -7,7 +7,7 @@ var Encounter = function(game, tier, modifiers, player) {
 	this.globalModifiers = modifiers
 
 	// for ludum dare 32 we will only have the one foe
-	// but laterit may be different
+	// but later it may be different
 	this.foes = getFoes(game);
 };
 
@@ -20,9 +20,9 @@ Encounter.prototype.start = function() {
 Encounter.prototype.resolveCommand = function(command) {
   console.log(this.text);
 
-	switch (command.name.specific) {
+	switch (command.data.name.specific) {
 		case 'Claws':
-
+			// kill it
 		break;
 	}
 }

@@ -5,6 +5,9 @@ var Foe = function(game, config) {
 
   config.sprite.animations.forEach(function (anim) {
 		this.animations.add(anim.name, anim.frames, anim.frameRate, anim.loop);
+		if (anim.name === 'idle') {
+			this.animations.play('idle');
+		};
   }.bind(this));
 
   this.scale.setTo(4, 4);
