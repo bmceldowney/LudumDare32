@@ -39,7 +39,10 @@ Play.prototype = {
     this.game.input.keyboard.addKey(Phaser.Keyboard.O).onDown.add(this.menu.enable, this.menu);
 
     this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(function() {
-      this.menu.commands.getActiveCommand().execute();
+      var command = this.menu.commands.getActiveCommand();
+      if (command) {
+        command.execute();
+      }
     }, this);
 
     this.menu.commands.add(new Command('claws'));

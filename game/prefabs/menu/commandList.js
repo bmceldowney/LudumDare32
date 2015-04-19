@@ -147,7 +147,7 @@ CommandList.prototype.chooseLeft = function() {
 };
 
 CommandList.prototype.getActiveCommand = function() {
-  return this.cursor.command;
+  return (this.cursor) ? this.cursor.command : null;
 };
 
 CommandList.prototype._handleExecution = function (e) {
