@@ -4,7 +4,7 @@ var Foe = require('./Foe');
 
 var Encounter = function(game, tier, modifiers, player) {
 	this.game = game;
-	this.globalModifiers = modifiers
+	this.globalModifiers = modifiers;
 
 	// for ludum dare 32 we will only have the one foe
 	// but later it may be different

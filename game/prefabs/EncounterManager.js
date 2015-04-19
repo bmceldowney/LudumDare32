@@ -1,5 +1,6 @@
 'use strict';
 var Encounter = require('./Encounter');
+var HealthBar = require('./hud/statusBar');
 
 var EncounterManager = function(game, player, commands) {
 	this.game = game;
@@ -10,6 +11,8 @@ var EncounterManager = function(game, player, commands) {
 
 	this.traveling = new Phaser.Signal();
 	this.encountering = new Phaser.Signal();
+  this.playerHealthBar = new HealthBar(game, 20, 30, this.game.width / 2 - 40, 20, 'ltr');
+  this.foeHealthBar = new HealthBar(game, this.game.width / 2 + 20, 30, this.game.width / 2 - 40, 20, 'rtl');
 };
 
 EncounterManager.prototype.constructor = EncounterManager;
@@ -28,13 +31,13 @@ EncounterManager.prototype.executeCommand = function (commandName) {
 
 function startWalking () {
 	this.traveling.dispatch();
-	this.game.time.events.add(5000, introFoes, this);
+	this.game.time.events.add(500, introFoes, this);
 }
 
 function introFoes () {
 	this.encounter = new Encounter(this.game, 0, null, this.player);
 
-	this.game.time.events.add(5000, stopWalking, this);
+	this.game.time.events.add(500, stopWalking, this);
 }
 
 function stopWalking () {
@@ -50,8 +53,23 @@ function startCombat () {
 	// combat simulation!
 	this.canAct = true;
 
-	// this.game.time.events.add(5000, startWalking, this);
-	// startWalking.call(this);
+  this.game.add.existing(this.foeHealthBar);
+  this.foeHealthBar.setLabel('ENEMY');
+  this.foeHealthBar.setValue(this.encounter.foes[0].getHealthRatio());
+  this.encounter.foes[0].onHealthChanged.add(foeHealthChange, this);foe
+
+  this.game.add.existing(this.playerHealthBar);
+  this.playerHealthBar.setLabel('BLOCKMAN AND TUNA');
+  this.playerHealthBar.setValue(this.player.getHealthRatio());
+  this.player.onHealthChanged.add(playerHealthChange, this);
+}
+
+function playerHealthChange() {
+  this.playerHealthBar.setValue(this.player.getHealthRatio());
+}
+
+function foeHealthChange() {
+  this.foeHealthBar.setValue(this.encounter.foes[0].getHealthRatio());
 }
 
 module.exports = EncounterManager;
