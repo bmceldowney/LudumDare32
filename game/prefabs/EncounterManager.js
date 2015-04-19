@@ -29,6 +29,7 @@ EncounterManager.prototype.executeCommand = function (commandName) {
 function startWalking () {
 	this.traveling.dispatch();
 	this.game.time.events.add(5000, introFoes, this);
+	this.player.run();
 }
 
 function introFoes () {
@@ -42,6 +43,8 @@ function stopWalking () {
 	this.encounter.foes.forEach(function (foe) {
 		foe.intro = false;
 	});
+	// this.player.trot();
+	this.player.stop();
 
 	startCombat.call(this);
 }
