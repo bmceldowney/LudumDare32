@@ -51,9 +51,7 @@ function stopWalking () {
 	this.encounter.foes.forEach(function (foe) {
 		foe.intro = false;
 	});
-	// this.player.trot();
 	this.player.stop();
-	this.player.claws();
 
 	startCombat.call(this);
 }
