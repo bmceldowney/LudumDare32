@@ -59,12 +59,14 @@ function startCombat () {
   this.game.add.existing(this.foeHealthBar);
   this.foeHealthBar.setLabel('ENEMY');
   this.foeHealthBar.setValue(this.encounter.foes[0].getHealthRatio());
-  this.encounter.foes[0].onHealthChanged.add(foeHealthChange, this);foe
+  this.encounter.foes[0].onHealthChanged.add(foeHealthChange, this);
+  this.encounter.foes[0].onDeath.add(foeDead, this);
 
   this.game.add.existing(this.playerHealthBar);
   this.playerHealthBar.setLabel('BLOCKMAN AND TUNA');
   this.playerHealthBar.setValue(this.player.getHealthRatio());
   this.player.onHealthChanged.add(playerHealthChange, this);
+  this.player.onDeath.add(playerDead, this);
 }
 
 function playerHealthChange() {
@@ -73,6 +75,16 @@ function playerHealthChange() {
 
 function foeHealthChange() {
   this.foeHealthBar.setValue(this.encounter.foes[0].getHealthRatio());
+}
+
+function playerDead() {
+  console.log('OH GOD NO! THE PLAYER IS DEAD');
+  this.game.state.start('play');
+}
+
+function foeDead() {
+  console.log('SWEET! YOU KILLED THE BAD GUY');
+  this.game.state.start('play');
 }
 
 module.exports = EncounterManager;

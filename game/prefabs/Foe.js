@@ -16,6 +16,7 @@ var Foe = function(game, config) {
   this.game.add.existing(this);
 
   this.onHealthChanged = new Phaser.Signal();
+  this.onDeath = new Phaser.Signal();
 
   this.maxHealth = 100;
   this.health = this.maxHealth;
@@ -51,8 +52,9 @@ Foe.prototype.setHealth = function(value) {
   if (this.health > this.maxHealth) {
     this.health = this.maxHealth;
   }
-  else if (this.health < 0) {
+  else if (this.health <= 0) {
     this.health = 0;
+    this.onDeath.dispatch(this);
   }
   this.onHealthChanged.dispatch(this);
 };
