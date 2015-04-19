@@ -12,6 +12,7 @@ function Menu(game, x, y, w, h) {
 
   this.addChild(this.panel);
   this.addChild(this.commands);
+  this.disable();
 }
 
 Menu.prototype = Object.create(Phaser.Sprite.prototype);

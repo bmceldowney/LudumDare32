@@ -7,7 +7,9 @@ var EncounterManager = function(game, player, commands) {
 	this.currentTier = 0;
 	this.player = player;
 	this.commands = commands;
-	this.canAct = false;
+
+	this.beginInteraction = new Phaser.Signal();
+	this.endInteraction = new Phaser.Signal();
 
 	this.traveling = new Phaser.Signal();
 	this.encountering = new Phaser.Signal();
@@ -23,20 +25,23 @@ EncounterManager.prototype.start = function() {
 
 EncounterManager.prototype.executeCommand = function (commandName) {
 	// we need an encounter to act
-	if (this.encounter && this.canAct) {
-		// this.canAct = false;
+	if (this.encounter) {
+		this.endInteraction.dispatch();
 		this.encounter.resolveCommand(commandName);
 	};
 }
 
 function startWalking () {
 	this.traveling.dispatch();
-	this.game.time.events.add(5000, introFoes, this);
+	this.game.time.events.add(500, introFoes, this);
 	this.player.run();
 }
 
 function introFoes () {
 	this.encounter = new Encounter(this.game, 0, null, this.player);
+	this.encounter.beginPlayerTurn.add(function () {
+		this.beginInteraction.dispatch();
+	}.bind(this));
 
 	this.game.time.events.add(500, stopWalking, this);
 }
@@ -55,7 +60,7 @@ function stopWalking () {
 
 function startCombat () {
 	// combat simulation!
-	this.canAct = true;
+	this.beginInteraction.dispatch();
 
   this.game.add.existing(this.foeHealthBar);
   this.foeHealthBar.setLabel(this.encounter.foes[0].name);
