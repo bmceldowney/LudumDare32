@@ -30,7 +30,7 @@ Preload.prototype = {
     this.load.bitmapFont('yoster-gray', 'assets/fonts/yoster-gray.png', 'assets/fonts/yoster-gray.fnt');
 
     // Actors
-    this.load.spritesheet('blockman', 'assets/placeholder/blockman_oneleg1.png', 25, 24);
+    this.load.spritesheet('blockman', 'assets/placeholder/blockman_oneleg2.png', 25, 24);
     this.load.spritesheet('tuna', 'assets/placeholder/tuna_sprite_all_5.png', 100, 50);
   },
 
