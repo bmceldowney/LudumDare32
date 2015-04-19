@@ -26,7 +26,6 @@ Play.prototype = {
       x: 460,
       y: 220,
     });
-    this.player.run();
 
     this.menu = new Menu(this.game, 0, this.game.height - 200, this.game.width, 200);
     this.game.add.existing(this.menu);
