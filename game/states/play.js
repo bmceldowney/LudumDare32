@@ -31,9 +31,10 @@ Play.prototype = {
       this.menu.commands.getActiveCommand().execute();
     }, this);
 
-    this.menu.commands.add(new Command({name: 'claws'}));
-    this.menu.commands.add(new Command({name: 'teeth'}));
-    this.menu.commands.add(new Command({name: 'bork'}));
+    this.menu.commands.add(new Command('claws'));
+    this.menu.commands.add(new Command('teeth'));
+    this.menu.commands.add(new Command('tuna'));
+    this.menu.commands.add(new Command('bad_tuna'));
     this.menu.commands.commandExecuted.add(this.commandHandler, this);
 
     var player = null; //placeholder, replace with real player

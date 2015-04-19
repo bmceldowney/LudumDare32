@@ -8,7 +8,7 @@ function CommandList(game, parent) {
   this.commandExecuted = new Phaser.Signal();
 }
 
-CommandList.MAX = 6;
+CommandList.MAX = 30;
 
 CommandList.prototype = Object.create(Phaser.Group.prototype);
 CommandList.constructor = CommandList;
@@ -19,7 +19,7 @@ CommandList.prototype.add = function(command) {
     throw new Error('Can\'t add more commands to the list. Max length exceeded.');
   }
 
-  Phaser.Group.prototype.add.call(this, new CommandOption(this.game, 0, 0, command));
+  Phaser.Group.prototype.add.call(this, new CommandOption(this.game, 0, 0, command.model));
 
   if (this.length === 1) {
     this.setActive(this.getAt(0));

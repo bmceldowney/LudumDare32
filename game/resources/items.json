@@ -1,82 +1,58 @@
 {
   "claws": {
     "name": {
-      "general": "<Claws>",
-      "specific": "Claws"
+      "general": "CLAWS?",
+      "specific": "CLAWS"
     },
     "description": {
       "general": "My claws must be good for something...",
       "specific": "Tear 'em to shreds!"
+    },
+    "modifiers": {
+      "cooldown": 1,
+      "power": 1
     }
   },
   "teeth": {
     "name": {
-      "general": "<Teeth>",
-      "specific": "Teeth"
+      "general": "TEETH?",
+      "specific": "TEETH"
     },
     "description": {
       "general": "My teeth must be good for something...",
       "specific": "Go for the jugular!"
+    },
+    "modifiers": {
+      "cooldown": 1.2,
+      "power": 1.2
     }
   },
   "tuna": {
     "name": {
-      "general": "<Unopened Can>",
-      "specific": "Canned Tuna"
+      "general": "UNOPENED CAN?",
+      "specific": "CANNED TUNA"
     },
     "description": {
       "general": "Smells fishy...",
       "specific": "Regain some HP"
+    },
+    "modifiers": {
+      "cooldown": 1.2,
+      "health": 0.5
     }
   },
-  "scented_candle": {
+  "bad_tuna": {
     "name": {
-      "general": "<Unopened Can>",
-      "specific": "Scented Candle"
+      "general": "UNOPENED CAN?",
+      "specific": "EXPIRED TUNA"
     },
     "description": {
-      "general": "Smells sweet...",
-      "specific": "Increase focus"
-    }
-  },
-  "asprin": {
-    "name": {
-      "general": "<Pill>",
-      "specific": "Asprin"
+      "general": "Smells really fishy...",
+      "specific": "Lose some HP"
     },
-    "description": {
-      "general": "A round, white pill...",
-      "specific": "Faster recovery after taking damage"
-    }
-  },
-  "melatonin": {
-    "name": {
-      "general": "<Pill>",
-      "specific": "Melatonin"
-    },
-    "description": {
-      "general": "A small, white pill...",
-      "specific": "Induces sleep"
-    }
-  },
-  "antihistamine": {
-    "name": {
-      "general": "<Pill>",
-      "specific": "Antihistamine"
-    },
-    "description": {
-      "general": "A long, yellow pill...",
-      "specific": "Increases defense. Slows down recovery..."
-    }
-  },
-  "placebo": {
-    "name": {
-      "general": "<Pill>",
-      "specific": "Placebo"
-    },
-    "description": {
-      "general": "A small, white pill...",
-      "specific": "Makes your HP bar longer"
+    "modifiers": {
+      "cooldown": 1.2,
+      "health": -0.33
     }
   }
 }

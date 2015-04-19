@@ -1,5 +1,8 @@
-function Command(config) {
-  this.text = config.name;
+var items = require('../resources/items');
+
+function Command(key) {
+  this.key = key;
+  this.model = items[key];
   this.executing = new Phaser.Signal();
 }
 
@@ -8,7 +11,7 @@ Command.constructor = Command;
 
 Command.prototype.execute = function() {
 	this.executing.dispatch(this);
-  console.log(this.text);
+  console.log(key);
 };
 
 module.exports = Command;

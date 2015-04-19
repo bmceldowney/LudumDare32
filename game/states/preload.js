@@ -26,6 +26,9 @@ Preload.prototype = {
 
     // Fonts
     this.load.bitmapFont('8bit-light', 'assets/fonts/8bit_wonder-light.png', 'assets/fonts/8bit_wonder-light.fnt');
+    this.load.bitmapFont('yoster-white', 'assets/fonts/yoster-white.png', 'assets/fonts/yoster-white.fnt');
+    this.load.bitmapFont('yoster-gray', 'assets/fonts/yoster-gray.png', 'assets/fonts/yoster-gray.fnt');
+
     this.load.spritesheet('blockman', 'assets/placeholder/blockman.png', 25, 24);
     this.load.spritesheet('tuna', 'assets/placeholder/tuna_sprite_all_5.png', 100, 50);
 
