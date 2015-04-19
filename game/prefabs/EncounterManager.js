@@ -58,7 +58,7 @@ function startCombat () {
 	this.canAct = true;
 
   this.game.add.existing(this.foeHealthBar);
-  this.foeHealthBar.setLabel('ENEMY');
+  this.foeHealthBar.setLabel(this.encounter.foes[0].name);
   this.foeHealthBar.setValue(this.encounter.foes[0].getHealthRatio());
   this.encounter.foes[0].onHealthChanged.add(foeHealthChange, this);
   this.encounter.foes[0].onDeath.add(foeDead, this);

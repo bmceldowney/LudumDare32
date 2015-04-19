@@ -14,11 +14,12 @@ var Foe = function(game, config) {
   this.smoothed = false;
   this.intro = true;
   this.game.add.existing(this);
+  this.name = config.name.toUpperCase();
 
   this.onHealthChanged = new Phaser.Signal();
   this.onDeath = new Phaser.Signal();
 
-  this.maxHealth = 100;
+  this.maxHealth = config.stats.health;
   this.health = this.maxHealth;
 
   window.foe = this;

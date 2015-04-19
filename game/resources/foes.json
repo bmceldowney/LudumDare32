@@ -32,7 +32,7 @@
 		"stats": {
 			"power": 10,
 			"stamina": 15,
-			"health": 50,
+			"health": 100,
 			"defense": 20
 		}
 	},{
@@ -59,6 +59,12 @@
 				"frameRate": 5,
 				"loop": false
 			}]
-		}
+		},
+    "stats": {
+      "power": 10,
+      "stamina": 15,
+      "health": 1000,
+      "defense": 20
+    }
 	}
 ]

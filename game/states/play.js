@@ -70,6 +70,7 @@ Play.prototype = {
     this.menu.commands.add(new Command('tuna'));
     this.menu.commands.add(new Command('bad_tuna'));
     this.menu.commands.commandExecuted.add(this.commandHandler, this);
+    this.menu.disable();
 
     this.encounterManager = new EncounterManager(this.game, this.player, this.menu.commands);
     this.encounterManager.traveling.add(this.travelHandler, this);
@@ -100,6 +101,7 @@ Play.prototype = {
 
   encounterHandler: function() {
     this.parallaxStage.stopScroll();
+    this.menu.enable();
   }
 };
 
