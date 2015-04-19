@@ -19,8 +19,9 @@ Attack.prototype.constructor = Attack;
 
 Attack.prototype._do = function () {
 	var anim;
+	var animName = this.command.name.specific.toLowerCase();
 	if (this.attacker && this.attacker.animations) {
-		anim = this.attacker.animations.play('attack');
+		anim = this.attacker.animations.play(animName);
 		anim.onComplete.add(this._attackComplete, this);
 	} else {
 		this._attackComplete.call(this);
