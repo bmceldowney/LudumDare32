@@ -29,6 +29,9 @@ Play.prototype = {
     this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN).onDown.add(this.menu.commands.chooseDown, this.menu.commands);
     this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT).onDown.add(this.menu.commands.chooseLeft, this.menu.commands);
 
+    this.game.input.keyboard.addKey(Phaser.Keyboard.A).onDown.add(this.menu.disable, this.menu);
+    this.game.input.keyboard.addKey(Phaser.Keyboard.O).onDown.add(this.menu.enable, this.menu);
+
     this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(function() {
       this.menu.commands.getActiveCommand().execute();
     }, this);

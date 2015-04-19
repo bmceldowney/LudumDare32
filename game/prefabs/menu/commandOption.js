@@ -23,6 +23,20 @@ function CommandOption(game, x, y, command) {
 CommandOption.prototype = Object.create(Phaser.Sprite.prototype);
 CommandOption.constructor = CommandOption;
 
+CommandOption.prototype.disable = function() {
+  this.active(false);
+  this.name.font = 'yoster-gray';
+};
+
+CommandOption.prototype.enable = function() {
+  if (this.command.granularity === 'specific') {
+    this.name.font = 'yoster-white';
+  }
+  else {
+    this.name.font = 'yoster-blue';
+  }
+};
+
 CommandOption.prototype.active = function(isActive) {
 
   if (isActive !== undefined) {

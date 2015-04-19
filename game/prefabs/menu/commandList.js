@@ -6,12 +6,25 @@ var optionHeight = 30;
 function CommandList(game, parent) {
   Phaser.Group.call(this, game, parent, 'CommandList');
   this.commandExecuted = new Phaser.Signal();
+  this.isDisabled = false;
 }
 
 CommandList.MAX = 30;
 
 CommandList.prototype = Object.create(Phaser.Group.prototype);
 CommandList.constructor = CommandList;
+
+CommandList.prototype.disable = function() {
+  this.isDisabled = true;
+  this.callAll('disable', null, false);
+  this.setActive(null);
+};
+
+CommandList.prototype.enable = function() {
+  this.isDisabled = false;
+  this.callAll('enable', null, false);
+  this.setActive(this.getAt(this.cursorIndex));
+};
 
 CommandList.prototype.add = function(command) {
 
@@ -58,11 +71,17 @@ CommandList.prototype.remove = function(command) {
 CommandList.prototype.setActive = function(command) {
   this.callAll('active', null, false);
   this.cursor = command;
-  this.cursor.active(true);
+  this.cursor && this.cursor.active(true);
 };
 
 CommandList.prototype.chooseUp = function() {
+
+  if (this.isDisabled == true) {
+    return;
+  }
+
   this.callAll('active', null, false);
+
   if (this.cursor) {
     this.cursorIndex = (this.cursorIndex + -1 >= 0) ? this.cursorIndex + -1 : this.length + this.cursorIndex + -1;
     this.cursor = this.getAt(this.cursorIndex);
@@ -74,7 +93,13 @@ CommandList.prototype.chooseUp = function() {
 };
 
 CommandList.prototype.chooseRight = function() {
+
+  if (this.isDisabled == true) {
+    return;
+  }
+
   this.callAll('active', null, false);
+
   if (this.cursor) {
     this.cursorIndex = (this.cursorIndex + 6 < this.length) ? this.cursorIndex + 6 : (this.cursorIndex + 6) - this.length;
     this.cursor = this.getAt(this.cursorIndex);
@@ -86,7 +111,13 @@ CommandList.prototype.chooseRight = function() {
 };
 
 CommandList.prototype.chooseDown = function() {
+
+  if (this.isDisabled == true) {
+    return;
+  }
+
   this.callAll('active', null, false);
+
   if (this.cursor) {
     this.cursorIndex = (this.cursorIndex + 1 < this.length) ? this.cursorIndex + 1 : (this.cursorIndex + 1) - this.length;
     this.cursor = this.getAt(this.cursorIndex);
@@ -98,7 +129,13 @@ CommandList.prototype.chooseDown = function() {
 };
 
 CommandList.prototype.chooseLeft = function() {
+
+  if (this.isDisabled == true) {
+    return;
+  }
+
   this.callAll('active', null, false);
+
   if (this.cursor) {
     this.cursorIndex = (this.cursorIndex + -6 >= 0) ? this.cursorIndex + -6 : this.length + this.cursorIndex + -6;
     this.cursor = this.getAt(this.cursorIndex);

@@ -17,4 +17,12 @@ function Menu(game, x, y, w, h) {
 Menu.prototype = Object.create(Phaser.Sprite.prototype);
 Menu.constructor = Menu;
 
+Menu.prototype.disable = function() {
+  this.commands.disable();
+};
+
+Menu.prototype.enable = function() {
+  this.commands.enable();
+};
+
 module.exports = Menu;
