@@ -28,10 +28,6 @@ var Foe = function(game, config) {
 Foe.prototype = Object.create(Phaser.Sprite.prototype);
 Foe.prototype.constructor = Foe;
 
-Foe.prototype.attack = function () {
-	this.animations.play('attack');
-}
-
 Foe.prototype.update = function() {
   if (this.intro) {
   	this.x -= 10.25;

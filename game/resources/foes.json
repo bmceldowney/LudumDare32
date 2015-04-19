@@ -34,7 +34,21 @@
 			"stamina": 15,
 			"health": 100,
 			"defense": 20
-		}
+		},
+		"attack": {
+	    "name": {
+	      "general": "CLAWS?",
+	      "specific": "CLAWS"
+	    },
+	    "description": {
+	      "general": "My claws must be good for something...",
+	      "specific": "Tear 'em to shreds!"
+	    },
+	    "modifiers": {
+	      "cooldown": 1,
+	      "power": 1
+	    }
+	  }
 	},{
 		"name": "jug",
 		"sprite": {
@@ -60,11 +74,25 @@
 				"loop": false
 			}]
 		},
-    "stats": {
-      "power": 10,
-      "stamina": 15,
-      "health": 1000,
-      "defense": 20
-    }
+		"stats": {
+			"power": 10,
+			"stamina": 15,
+			"health": 50,
+			"defense": 20
+		},
+		"attack": {
+	    "name": {
+	      "general": "CLAWS?",
+	      "specific": "CLAWS"
+	    },
+	    "description": {
+	      "general": "My claws must be good for something...",
+	      "specific": "Tear 'em to shreds!"
+	    },
+	    "modifiers": {
+	      "cooldown": 1,
+	      "power": 1
+	    }
+	  }
 	}
 ]

@@ -51,6 +51,10 @@ var Player = function(game, config) {
 
   this.tuna.animations.play('walk');
   this.blockman.animations.play('walk');
+  this.animations = new AnimationDelegate(this);
+  this.addChild = function () {
+    this.blockman.addChild.apply(this.blockman, arguments);
+  }
 
   this.onHealthChanged = new Phaser.Signal();
   this.onDeath = new Phaser.Signal();
@@ -61,6 +65,17 @@ var Player = function(game, config) {
 
   window.player = this;
 };
+
+function AnimationDelegate (context) {
+  this.play = function (key) {
+    var anim = context.tuna.animations.getAnimation(key) || context.blockman.animations.getAnimation(key);
+    if (anim) {
+      anim.play();
+    };
+
+    return anim;
+  }
+}
 
 Player.prototype = Object.create(Object);
 Player.prototype.constructor = Player;

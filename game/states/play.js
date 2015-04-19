@@ -75,6 +75,8 @@ Play.prototype = {
     this.encounterManager = new EncounterManager(this.game, this.player, this.menu.commands);
     this.encounterManager.traveling.add(this.travelHandler, this);
     this.encounterManager.encountering.add(this.encounterHandler, this);
+    this.encounterManager.beginInteraction.add(this.menu.enable, this.menu);
+    this.encounterManager.endInteraction.add(this.menu.disable, this.menu);
     this.encounterManager.start();
   },
 
