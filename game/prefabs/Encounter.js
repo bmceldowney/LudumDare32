@@ -21,18 +21,17 @@ var Encounter = function(game, tier, modifiers, player) {
 
 Encounter.prototype.constructor = Encounter;
 
-Encounter.prototype.start = function() {
-
-};
-
 Encounter.prototype.resolveCommand = function(command) {
   console.log(command.name.specific);
 
+  if (this.currentAction) {
+  	this.currentAction.completed.remove(actionDone, this);
+  };
+
   this.playerCooldown = baseCooldown * command.modifiers.cooldown;
 	switch (command.name.specific) {
-		case 'CLAWS':
-			this.currentAction = new Attack(this.game, this.player, this.foes[0], command, this);
 		case 'TEETH':
+		case 'CLAWS':
 			this.currentAction = new Attack(this.game, this.player, this.foes[0], command, this);
 		break;
 	}
@@ -45,8 +44,11 @@ function actionDone () {
 	if (this.playerCooldown > this.foeCooldown) {
 		this.playerCooldown = Math.floor(this.playerCooldown -= this.foeCooldown);
 		foeAction.call(this);
-	} else {
+	} else if (this.playerCooldown < this.foeCooldown) {
 		this.foeCooldown = Math.floor(this.foeCooldown -= this.playerCooldown);
+		this.beginPlayerTurn.dispatch();
+	} else {
+		this.playerCooldown = this.foeCooldown = 0;
 		this.beginPlayerTurn.dispatch();
 	};
 }
@@ -54,6 +56,10 @@ function actionDone () {
 function foeAction () {
 	// maybe something other than attacking?
 	this.foeCooldown = baseCooldown * this.foes[0].attack.modifiers.cooldown;
+  if (this.currentAction) {
+  	this.currentAction.completed.remove(actionDone, this);
+  };
+
 	this.currentAction = new Attack(this.game, this.foes[0], this.player, this.foes[0].attack, this);
 	this.currentAction.completed.add(actionDone, this);
 	this.currentAction.do();
