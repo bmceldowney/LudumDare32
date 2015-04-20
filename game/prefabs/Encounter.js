@@ -3,6 +3,8 @@ var foes = require('../resources/foes');
 var Foe = require('./Foe');
 var Attack = require('./actions/Attack');
 
+var baseCooldown = 10;
+
 var Encounter = function(game, tier, modifiers, player) {
 	this.game = game;
 	this.globalModifiers = modifiers;
@@ -26,7 +28,7 @@ Encounter.prototype.start = function() {
 Encounter.prototype.resolveCommand = function(command) {
   console.log(command.name.specific);
 
-  this.playerCooldown = command.modifiers.cooldown;
+  this.playerCooldown = baseCooldown * command.modifiers.cooldown;
 	switch (command.name.specific) {
 		case 'CLAWS':
 			this.currentAction = new Attack(this.game, this.player, this.foes[0], command, this);
@@ -39,23 +41,19 @@ Encounter.prototype.resolveCommand = function(command) {
 	this.currentAction.do();
 }
 
-function buff () {
-
-}
-
 function actionDone () {
 	if (this.playerCooldown > this.foeCooldown) {
-		this.playerCooldown -= this.foeCooldown;
+		this.playerCooldown = Math.floor(this.playerCooldown -= this.foeCooldown);
 		foeAction.call(this);
 	} else {
-		this.foeCooldown -= this.playerCooldown;
+		this.foeCooldown = Math.floor(this.foeCooldown -= this.playerCooldown);
 		this.beginPlayerTurn.dispatch();
 	};
 }
 
 function foeAction () {
 	// maybe something other than attacking?
-	this.foeCooldown = this.foes[0].attack.modifiers.cooldown;
+	this.foeCooldown = baseCooldown * this.foes[0].attack.modifiers.cooldown;
 	this.currentAction = new Attack(this.game, this.foes[0], this.player, this.foes[0].attack, this);
 	this.currentAction.completed.add(actionDone, this);
 	this.currentAction.do();

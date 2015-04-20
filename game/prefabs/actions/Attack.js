@@ -30,6 +30,7 @@ Attack.prototype._do = function () {
 
 Attack.prototype._done = function () {
 	//cleanup
+	this.damageText.destroy();
 }
 
 Attack.prototype._attackComplete =	function () {
@@ -37,11 +38,15 @@ Attack.prototype._attackComplete =	function () {
 	this.damageText.setText(this.command.modifiers.power);
 	this.defender.addChild(this.damageText);
 
-	if (anim) {
-		anim.onComplete.add(this.done, this);
-	} else {
-		this.done();
-	};
+	this.game.time.events.add(800, afterPause, this);
+
+	function afterPause () {
+		if (anim) {
+			anim.onComplete.add(this.done, this);
+		} else {
+			this.done();
+		};
+	}
 }
 
 module.exports = Attack;
