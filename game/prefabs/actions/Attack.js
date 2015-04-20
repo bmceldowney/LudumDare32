@@ -1,6 +1,8 @@
 'use strict';
 var ActionBase = require('./ActionBase');
 
+var baseDamage = 20;
+
 var Attack = function(game, attacker, defender, command) {
 	ActionBase.call(this, game);
 
@@ -31,12 +33,13 @@ Attack.prototype._do = function () {
 Attack.prototype._done = function () {
 	//cleanup
 	this.damageText.destroy();
-  this.defender.damage(20);
 }
 
 Attack.prototype._attackComplete =	function () {
 	var anim = this.defender.animations.play('hit');
-	this.damageText.setText(this.command.modifiers.power);
+	var damage = Math.floor(baseDamage * this.command.modifiers.power);
+  this.defender.damage(damage);
+	this.damageText.setText(damage);
 	this.defender.addChild(this.damageText);
 
 	this.game.time.events.add(800, afterPause, this);
