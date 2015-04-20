@@ -31,6 +31,7 @@ Attack.prototype._do = function () {
 Attack.prototype._done = function () {
 	//cleanup
 	this.damageText.destroy();
+  this.defender.damage(20);
 }
 
 Attack.prototype._attackComplete =	function () {
