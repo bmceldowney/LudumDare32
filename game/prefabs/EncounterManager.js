@@ -33,8 +33,8 @@ EncounterManager.prototype.executeCommand = function (commandName) {
 
 function startWalking () {
 	this.traveling.dispatch();
-	this.game.time.events.add(500, introFoes, this);
-	this.player.run();
+	this.game.time.events.add(1500, introFoes, this);
+	this.player.animations.play('walk');
 }
 
 function introFoes () {
@@ -51,7 +51,7 @@ function stopWalking () {
 	this.encounter.foes.forEach(function (foe) {
 		foe.intro = false;
 	});
-	this.player.stop();
+	this.player.animations.stop();
 
 	startCombat.call(this);
 }
@@ -67,7 +67,7 @@ function startCombat () {
   this.encounter.foes[0].onDeath.add(foeDead, this);
 
   this.game.add.existing(this.playerHealthBar);
-  this.playerHealthBar.setLabel('BLOCKMAN AND TUNA');
+  this.playerHealthBar.setLabel(this.player.name);
   this.playerHealthBar.setValue(this.player.getHealthRatio());
   this.player.onHealthChanged.add(playerHealthChange, this);
   this.player.onDeath.add(playerDead, this);

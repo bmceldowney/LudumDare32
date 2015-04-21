@@ -3,7 +3,7 @@
 		"name": "golem",
 		"sprite": {
 			"key": "golem",
-			"x": 460,
+			"x": 1000,
 			"y": 210,
       "scaleX": 4,
       "scaleY": 4,
@@ -52,7 +52,7 @@
 		"name": "jug",
 		"sprite": {
 			"key": "jug",
-			"x": 460,
+			"x": 1000,
 			"y": 250,
       "scaleX": 4,
       "scaleY": 4,

@@ -5,6 +5,7 @@ var Player = require('../prefabs/player');
 var Menu = require('../prefabs/menu');
 var Command = require('../commands/Command');
 var EncounterManager = require('../prefabs/EncounterManager');
+var playerConfig = require('../resources/player');
 
 function Play() {}
 Play.prototype = {
@@ -22,10 +23,7 @@ Play.prototype = {
 
     this.parallaxStage = new ParallaxStage(this.game, parallaxStageConfig);
 
-    this.player = new Player(this.game, {
-      x: 460,
-      y: 220,
-    });
+    this.player = new Player(this.game, playerConfig);
 
     this.menu = new Menu(this.game, 0, this.game.height - 200, this.game.width, 200);
     this.game.add.existing(this.menu);

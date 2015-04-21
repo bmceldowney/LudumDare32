@@ -16,10 +16,10 @@ Preload.prototype = {
     this.load.setPreloadSprite(this.asset);
 
     /* load the assets here */
-    this.load.image('forestBack', 'assets/placeholder/parallax-forest-back-trees.png');
-    this.load.image('forestFront', 'assets/placeholder/parallax-forest-front-trees.png');
-    this.load.image('forestLights', 'assets/placeholder/parallax-forest-lights.png');
-    this.load.image('forestMiddle', 'assets/placeholder/parallax-forest-middle-trees.png');
+    this.load.image('forestBack', 'assets/placeholder/parallax-forest-back-trees.offset.png');
+    this.load.image('forestFront', 'assets/placeholder/parallax-forest-front-trees.offset.png');
+    this.load.image('forestLights', 'assets/placeholder/parallax-forest-lights.offset.png');
+    this.load.image('forestMiddle', 'assets/placeholder/parallax-forest-middle-trees.offset.png');
 
     this.load.spritesheet('golem', 'assets/placeholder/Golem.png', 48, 56, 16);
     this.load.spritesheet('jug', 'assets/placeholder/jug.png', 63, 45);
